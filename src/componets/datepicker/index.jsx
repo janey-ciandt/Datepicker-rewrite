@@ -130,7 +130,7 @@ export default class DatePicker extends React.Component {
       enableTabLoop: true,
       yearItemNumber: DEFAULT_YEAR_ITEM_NUMBER,
       focusSelectedMonth: false,
-      showPopperArrow: true,
+      showPopperArrow: false,
       excludeScrollbar: true,
       customTimeInput: null,
       calendarStartDay: undefined,
