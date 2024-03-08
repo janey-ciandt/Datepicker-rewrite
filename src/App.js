@@ -30,9 +30,13 @@ function App() {
         changeYear,
         changeMonth,
         decreaseMonth,
+        decreaseYear,
         increaseMonth,
+        increaseYear,
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
+        prevYearButtonDisabled,
+        nextYearButtonDisabled,
       }) => (
         <div
           style={{
@@ -41,7 +45,7 @@ function App() {
             justifyContent: "center",
           }}
         >
-          <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+          <button onClick={decreaseYear} disabled={prevYearButtonDisabled}>
             {"<"}
           </button>
           <select
@@ -54,7 +58,12 @@ function App() {
               </option>
             ))}
           </select>
-
+          <button onClick={ increaseYear} disabled={nextYearButtonDisabled}>
+            {">"}
+          </button>
+          <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+            {"<"}
+          </button>
           <select
             value={months[getMonth(date)]}
             onChange={({ target: { value } }) =>
