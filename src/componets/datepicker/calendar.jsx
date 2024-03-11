@@ -209,8 +209,8 @@ export default class Calendar extends React.Component {
     weekAriaLabelPrefix: PropTypes.string,
     monthAriaLabelPrefix: PropTypes.string,
     setPreSelection: PropTypes.func,
+    weeks: PropTypes.array,
   };
-
   constructor(props) {
     super(props);
 
@@ -419,6 +419,28 @@ export default class Calendar extends React.Component {
         <div key="W" className="react-datepicker__day-name">
           {this.props.weekLabel || "#"}
         </div>,
+      );
+    }
+    if(this.props.weeks) {
+      return dayNames.concat(
+        this.props.weeks.map((weekname,index) => {
+          const day = addDays(startOfWeek, index);
+          const weekDayClassName = this.props.weekDayClassName
+            ? this.props.weekDayClassName(day)
+            : undefined;
+  
+          return (
+            <div
+              key={index}
+              className={classnames(
+                "react-datepicker__day-name",
+                weekDayClassName,
+              )}
+            >
+              {weekname}
+            </div>
+          );
+        }),
       );
     }
     return dayNames.concat(
