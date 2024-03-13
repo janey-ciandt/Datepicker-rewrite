@@ -6,16 +6,19 @@
   padding: 0;
   border: 0;
 }
+.react-datepicker__day--outside-month {
+  color: #9DAED6 !important;
+}
 
 .react-datepicker {
   font-family: $datepicker__font-family;
   font-size: $datepicker__font-size;
   background-color: #fff;
   color: $datepicker__text-color;
-  border: 1px solid $datepicker__border-color;
   border-radius: $datepicker__border-radius;
   display: inline-block;
   position: relative;
+  box-shadow: 0px -5px 8px -2px rgba(16, 24, 40, 0.05), 0px 20px 24px -4px rgba(16, 24, 40, 0.10);
 
   // Reverting value set in .react-datepicker-popper
   line-height: initial;
@@ -55,9 +58,8 @@
 .react-datepicker__header {
   text-align: center;
   background-color: $datepicker__background-color;
-  border-bottom: 1px solid $datepicker__border-color;
   border-top-left-radius: $datepicker__border-radius;
-  padding: 8px 0;
+  padding-top: 8px;
   position: relative;
 
   &--time {
@@ -72,6 +74,53 @@
 
   &:not(&--has-time-select) {
     border-top-right-radius: $datepicker__border-radius;
+  }
+  & button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    padding: 0;
+    background-color: $datepicker__background-color;
+    & svg {
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+  & select {
+    min-width: 65px;
+    border: none;
+    appearance: none;
+    display: inline-flex;
+    color: #707070;
+    background-color: $datepicker__background-color;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    padding: 10px 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M5.25 7.5L9 11.25L12.75 7.5H5.25Z' fill='%23707070'/%3E%3C/svg%3E");
+    background-position: calc(100% - 8px) center;
+    background-repeat: no-repeat;
+    background-size: 18px, 18px;
+    text-indent: -24px;
+    &:focus-visible {
+      outline: none;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    & option:hover {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  & select.years {
+    text-indent: -28px;
+    min-width: 74px;
   }
 }
 
@@ -203,7 +252,7 @@
 }
 
 .react-datepicker__month {
-  margin: $datepicker__margin;
+  margin: 0 0.75rem;
   text-align: center;
 
   .react-datepicker__month-text,
@@ -364,10 +413,24 @@
     }
   }
 }
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
 
 .react-datepicker__day-names {
   white-space: nowrap;
-  margin-bottom: -8px;
+  display: flex;
+  justify-content: center;
+  & .react-datepicker__day-name {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 }
 
 .react-datepicker__week {
@@ -385,25 +448,37 @@
   margin: $datepicker__day-margin;
 }
 
+.react-datepicker__day {
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  text-align: center;
+  vertical-align: middle;
+}
+.react-datepicker__week {
+  display: flex;
+  justify-content: center;
+}
 .react-datepicker__day,
 .react-datepicker__month-text,
 .react-datepicker__quarter-text,
 .react-datepicker__year-text {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
 
   &:hover {
-    border-radius: $datepicker__border-radius;
-    background-color: $datepicker__background-color;
-  }
-
-  &--today {
-    font-weight: bold;
+    border-radius: 40px;
+    background-color: #FF7632;
+    color: #F5F7FB;
   }
 
   &--highlighted {
     border-radius: $datepicker__border-radius;
     background-color: $datepicker__highlighted-color;
-    color: #fff;
+    color: #F5F7FB;
 
     &:hover {
       background-color: darken($datepicker__highlighted-color, 5%);
@@ -454,24 +529,25 @@
   &--selected,
   &--in-selecting-range,
   &--in-range {
-    border-radius: $datepicker__border-radius;
-    background-color: $datepicker__selected-color;
-    color: #fff;
+    border-radius: 40px;
+    background-color: #F1682A;
+    color: #F5F7FB;
 
     &:hover {
-      background-color: darken($datepicker__selected-color, 5%);
+      background-color: #F1682A;
+      border-radius: 40px;
     }
   }
 
-  &--keyboard-selected {
-    border-radius: $datepicker__border-radius;
-    background-color: lighten($datepicker__selected-color, 45%);
-    color: rgb(0, 0, 0);
+  // &--keyboard-selected {
+  //   border-radius: $datepicker__border-radius;
+  //   background-color: lighten($datepicker__selected-color, 45%);
+  //   color: rgb(0, 0, 0);
 
-    &:hover {
-      background-color: darken($datepicker__selected-color, 5%);
-    }
-  }
+  //   &:hover {
+  //     background-color: darken($datepicker__selected-color, 5%);
+  //   }
+  // }
 
   &--in-selecting-range:not(&--in-range) {
     background-color: rgba($datepicker__selected-color, 0.5);

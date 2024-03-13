@@ -130,7 +130,7 @@ export default class DatePicker extends React.Component {
       enableTabLoop: true,
       yearItemNumber: DEFAULT_YEAR_ITEM_NUMBER,
       focusSelectedMonth: false,
-      showPopperArrow: true,
+      showPopperArrow: false,
       excludeScrollbar: true,
       customTimeInput: null,
       calendarStartDay: undefined,
@@ -317,6 +317,7 @@ export default class DatePicker extends React.Component {
     weekAriaLabelPrefix: PropTypes.string,
     monthAriaLabelPrefix: PropTypes.string,
     usePointerEvent: PropTypes.bool,
+    weeks: PropTypes.array,
   };
 
   constructor(props) {
@@ -439,7 +440,6 @@ export default class DatePicker extends React.Component {
   };
 
   setOpen = (open, skipSetBlur = false) => {
-    console.log('5556666555555555555');
     this.setState(
       {
         open: open,
@@ -1052,6 +1052,7 @@ export default class DatePicker extends React.Component {
         monthAriaLabelPrefix={this.props.monthAriaLabelPrefix}
         adjustDateOnChange={this.props.adjustDateOnChange}
         setOpen={this.setOpen}
+        weeks={this.props.weeks}
         shouldCloseOnSelect={this.props.shouldCloseOnSelect}
         dateFormat={this.props.dateFormatCalendar}
         useWeekdaysShort={this.props.useWeekdaysShort}
